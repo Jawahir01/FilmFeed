@@ -1,7 +1,10 @@
 import React from 'react';
 import MovieCard from '../components/MovieCard';
+import { useState } from 'react';
 
 function Home() {
+
+    const [searchTerm, setSearchTerm] = useState("");
 
     const movies = [
         {
@@ -35,8 +38,23 @@ function Home() {
             poster: "https://example.com/pulp-fiction-poster.jpg"}
     ];
 
+    const handleSearch = (e) => {
+        e.preventDefault();
+        console.log("Searching for: " + searchTerm);
+    }
+
+
     return (
+        
+
         <div className="home-page">
+            <form className="search-form" onSubmit={handleSearch}>
+                <input type="text" placeholder="Search movies..." className="search-input"
+                 value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+
+                <button type="submit" className="search-button">Search</button>
+            </form>
+
             <div className="movie-grid">
                 {movies.map(movie => (
                     <MovieCard key={movie.id} movie={movie} />
