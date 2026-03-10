@@ -45,8 +45,6 @@ function Home() {
 
 
     return (
-        
-
         <div className="home-page">
             <form className="search-form" onSubmit={handleSearch}>
                 <input type="text" placeholder="Search movies..." className="search-input"
@@ -56,9 +54,11 @@ function Home() {
             </form>
 
             <div className="movie-grid">
-                {movies.map(movie => (
+                {movies.map(
+                    (movie) => movie.title.toLowerCase().startsWith(searchTerm) && (
                     <MovieCard key={movie.id} movie={movie} />
-                ))}
+                    )
+                )}
             </div>
         </div>
     );
